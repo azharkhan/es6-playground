@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
     entry: [
@@ -13,8 +13,17 @@ module.exports = {
             port: 3333
     },
     devtool: 'eval-source-map',
-    plugins: [],
+    eslint: {
+        emitWarning: true
+    },
     module: {
+        preLoaders: [
+            {
+                test: /\.js?$/,
+                loader: 'eslint',
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.js?$/,
