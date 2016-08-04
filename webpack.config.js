@@ -1,0 +1,30 @@
+var webpack = require('webpack');
+var path = require('path');
+
+module.exports = {
+    entry: [
+        './src/index.js'
+    ],
+    output: {
+        filename: 'bundle.js',
+    },
+    devServer: {
+            inline: true,
+            port: 3333
+    },
+    devtool: 'eval-source-map',
+    plugins: [],
+    module: {
+        loaders: [
+            {
+                test: /\.js?$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015']
+                },
+                include: path.join(__dirname, 'src')
+            }
+        ]
+    }
+};
